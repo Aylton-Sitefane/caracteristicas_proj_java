@@ -1,0 +1,14 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/snap/weka/25/jar/weka-stable-3.8.6.jar",
+            "/snap/weka/25/jar/bounce.jar"
+        ],
+        "exclude": [
+            "lib/bounce-0.0.2.jar"
+        ]
+    }
+}
