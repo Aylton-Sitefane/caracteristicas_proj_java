@@ -11,12 +11,12 @@ public class App {
         try {
             // Carregar os dados
             DataSource ds = new DataSource("./caracteristicas.arff");
-            Instances bartInstance = ds.getDataSet();
+            Instances instacia = ds.getDataSet();
             // Definicao do indice do atributo classe
-            bartInstance.setClassIndex(bartInstance.numAttributes() - 1);
+            instacia.setClassIndex(instacia.numAttributes() - 1);
 
             // Exibicao dos dados carregados
-            System.out.println(bartInstance.toSummaryString());
+            System.out.println(instacia.toSummaryString());
 
             //Parametros para o J48
             String[] options = {"-C", "0.25", "-M", "30"};
@@ -24,11 +24,11 @@ public class App {
             // Treinar um modelo bart usando o clasificador j48
             J48 classificador = new J48();
             classificador.setOptions(options);
-            classificador.buildClassifier(bartInstance);
+            classificador.buildClassifier(instacia);
 
-            Evaluation eval = new Evaluation(bartInstance);
+            Evaluation eval = new Evaluation(instacia);
 
-            eval.crossValidateModel(classificador, bartInstance, 10, new Random(1));
+            eval.crossValidateModel(classificador, instacia, 10, new Random(1));
             System.out.println(eval.toSummaryString("\nJ48 Algoritm\n", true));
             System.out.println("Precisao: "+ eval.precision(1));
             System.out.println("Recal: "+ eval.recall(1));
